@@ -1,0 +1,89 @@
+<html>
+<!-- Gissa Numret - "Guess the number", a trivial game written by Per Lundberg with children (2013-06-13) -->
+  <head>
+    <title>Gissa Numret :)</title>
+    <style type="text/css">
+      * {
+        font-size: 14pt;
+        font-family: Helvetica;
+      }
+
+      body {
+        background-image: -webkit-gradient(linear, left top, left bottom, 
+          color-stop(0.00, red), 
+          color-stop(16%, orange),
+          color-stop(32%, yellow),
+          color-stop(48%, green),
+          color-stop(60%, blue),
+          color-stop(76%, indigo),
+          color-stop(1.00, violet)
+        );
+      }
+    </style>
+
+    <script type="text/javascript">
+
+function hittaPaEttNummer()
+{
+  this.numret = Math.round(Math.random() * 100);
+
+  if (this.numret == 0)
+  {
+    this.numret = 1;
+  }
+}
+
+function kollaVardet()
+{
+  var numberElement = document.getElementById('number');
+  var number = parseInt(numberElement.value);
+
+  var result = document.getElementById('resultat');
+
+  if (number == this.numret)
+  {
+    result.innerHTML = 'Bra gjort! Du gissade helt rätt. Om du vill så kan du prova igen.';
+    hittaPaEttNummer();
+  }
+  else if (number < this.numret)
+  {
+    result.innerHTML = 'Numret var för litet.';
+  }
+  else if (number > this.numret)
+  {
+    result.innerHTML = 'Numret var för stort.';
+  }
+
+  numberElement.value = '';
+  numberElement.focus();
+
+  return false;
+}
+
+hittaPaEttNummer();
+
+    </script>
+  </head>
+
+  <body>
+    <div style="background-color: #ec129f; color: white; margin: 12px; padding: 6px 18px; border: 2px solid #c300ed;">
+      <h3>Gissa Numret :)</h3>
+
+      <p>
+        I detta spel får du gissa ett nummer mellan 1 och 100. Varje gång du gissat så får du veta om din gissning var högre eller lägre än det rätta talet. Om det är rätt så får du <b>en poäng!</b>
+      </p>
+    </div>
+
+    <div style="background-color: #ec129f; color: white; margin: 12px; padding: 6px 18px; border: 2px solid #c300ed;;">
+      <p>Gissa ett tal mellan 1 och 100:</p>
+
+      <form>
+        <input id="number" type="text" style="width: 100px;" value="Gissa!" onfocus="javascript: this.value = '';"/> 
+        <input type="submit" value="Gissa!" onclick="javascript: return kollaVardet();" />
+      </form>
+
+      <div id="resultat" style="margin-top: 18px; height: 30px; font-weight: bold;">
+      </div>
+    </div>
+  </body>
+</html>
