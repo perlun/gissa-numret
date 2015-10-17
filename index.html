@@ -31,6 +31,8 @@ function hittaPaEttNummer()
   {
     this.numret = 1;
   }
+
+  this.counter = 0;
 }
 
 function kollaVardet()
@@ -42,16 +44,18 @@ function kollaVardet()
 
   if (number == this.numret)
   {
-    result.innerHTML = 'Bra gjort! Du gissade helt rätt. Om du vill så kan du prova igen.';
+    result.innerHTML = 'Bra gjort! Du gissade helt rätt på ' + this.counter + ' gissningar. Om du vill så kan du prova igen.';
     hittaPaEttNummer();
   }
   else if (number < this.numret)
   {
     result.innerHTML = 'Numret var för litet.';
+    this.counter++;
   }
   else if (number > this.numret)
   {
     result.innerHTML = 'Numret var för stort.';
+    this.counter++;
   }
 
   numberElement.value = '';
